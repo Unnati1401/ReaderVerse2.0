@@ -125,7 +125,7 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'sgd_project',
         'USER': 'postgres',
-        'PASSWORD': 'petals1@',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
