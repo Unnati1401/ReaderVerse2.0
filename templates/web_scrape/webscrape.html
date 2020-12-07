@@ -1,0 +1,87 @@
+{% extends 'core/base.html' %}
+{% block body_block %}
+
+<div class="container">
+<h1>Hello!</h1>
+
+<!-- AMAZON DETAILS DISPLAY-->
+
+
+<h1>Amazon</h1>
+{% if flip %}
+<div class="row">
+  <h2>This book isn't available</h2>
+</div>
+{% else %}
+<div class="row">
+<div class="col-3">
+  <img src="{{aimg}}" alt="">
+</div>
+
+<div class="col-6">
+  <h2>{{adesc}}</h2>
+  <h3>{{aprice}}</h3>
+  <h3>{{arating}}</h3>
+  <a href="{{alink}}">Click to buy</a>
+
+</div>
+
+</div>
+{% endif %}
+<br><br>
+<!-- FLIPKART DETAILS DISPLAY-->
+
+
+<h1>Flipkart</h1>
+{% if flip %}
+<div class="row">
+  <h2>This book isn't available</h2>
+</div>
+{% else %}
+<div class="row">
+<div class="col-3">
+  <img src="{{fimg}}" alt="" width="142px" height="218px">
+</div>
+
+<div class="col-6">
+  <h2>{{fdesc}}</h2>
+  <h3>{{fprice}}</h3>
+  <h3>{{frating}} out of 5 stars</h3>
+  <a href="{{flink}}">Click to buy</a>
+
+</div>
+
+</div>
+{% endif %}
+
+<!--SNAPDEAL DETAILS DISPLAY-->
+
+
+<h1>Snapdeal</h1>
+{% if snap %}
+<div class="row">
+  <h2>This book isn't available</h2>
+</div>
+{% else %}
+<div class="row">
+<div class="col-3">
+  <img src="{{simg}}" alt="" width="180px" height="218px">
+</div>
+
+<div class="col-6">
+  <h2>{{sdesc}}</h2>
+  <h3>{{sprice}}</h3>
+  <h3>{{srating}} out of 5 stars</h3>
+  <a href="{{slink}}">Click to buy</a>
+
+</div>
+
+</div>
+{% endif %}
+
+
+
+
+</div>
+
+{%endblock%}

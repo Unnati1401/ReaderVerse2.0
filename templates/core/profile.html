@@ -1,0 +1,116 @@
+{% extends 'core/base.html' %}
+{% block body_block %}
+
+<div class="sidenav">
+    <a href="{% url 'core:genresPage' %}">Genres</a>
+    <a href="{% url 'core:authorsPage' %}">Authors</a>
+    <a href="{% url 'core:collab' %}">See what others are reading</a>
+</div>
+
+<div class="container main">
+<h1 class="heading-custom">Profile page</h1>
+<section id="personalDetails">
+    <h2 class="heading-custom">Personal Details</h2>
+    <p>Username:{{userNode.username}}</p>
+    <p>First Name:{{userNode.first_name}}</p>
+    <p>Last Name:{{userNode.last_name}}</p>
+    <p>Email Id:{{userNode.email}}</p>
+</section>
+
+<section id="Favorites">
+<h2 class="heading-custom">Favorites List</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Authors</th>
+        <th scope="col">Genres</th>
+        <th scope="col">Remove from favorites</th>
+        
+    </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{book.0}}</td>
+                {% for a in book.1 %}
+                <td>{{a.name}}</td>
+                {% endfor %}
+                {% for g in book.2 %}
+                <td>{{g.name}}</td>
+                {% endfor %}
+                <form action="{% url 'core:removeFavorites' %}" method="post">
+                    {% csrf_token %}
+                    <td>
+                        <input class="form-check-input" type="checkbox" name="re" id="{{book.0}}" value="{{book.0}}">
+                        <label class="form-check-label" for="{{book.0}}">Select to remove</label>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" type="submit">Remove</button>
+                    </td>
+                </form>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section id="addGenre">
+    <h2 class="heading-custom">Genres</h2>
+    <h3 class="heading-custom">Your genres</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Genre</th>
+                <th scope="col">Remove from your genres</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for g in userGenres%}
+                <tr>
+                    <td>{{g.name}}</td>
+                        <form action="{% url 'core:removeGenres' %}" method="post">
+                            {% csrf_token %}
+                            <td>
+                                <input class="form-check-input" type="checkbox" name="removeGenresSelected" id="{{g.name}}" value="{{g.name}}">
+                                <label class="form-check-label" for="{{g.name}}">Select to remove</label>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" type="submit">Remove</button>
+                            </td>
+                        </form>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>   
+    <h3 class="heading-custom">Other genres</h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Genre</th>
+            <th scope="col">Add to your genres</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for g in otherGenres%}
+            <tr>
+                <td>{{g.name}}</td>
+                    <form action="{% url 'core:addGenres' %}" method="post">
+                        {% csrf_token %}
+                        <td>
+                            <input class="form-check-input" type="checkbox" name="addGenresSelected" id="{{g.name}}" value="{{g.name}}">
+                            <label class="form-check-label" for="{{g.name}}">Select to add</label>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" type="submit">Add</button>
+                        </td>
+                    </form>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
+
+</section>
+</div>
+
+{%endblock%}

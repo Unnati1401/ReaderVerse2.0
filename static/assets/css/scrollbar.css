@@ -1,0 +1,39 @@
+/* Box styles */
+.myBox {
+border: none;
+padding: 5px;
+width: 100%;
+height: 50%;
+overflow-y: hidden;
+overflow-x: hidden;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 10px #1d809f;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+border-radius: 10px;
+background:grey; 
+box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #1d809f;
+}
+
+.img_block {
+    position:relative;
+}
+
+.chkbox {
+    position:absolute; right:5px; bottom:3px;
+}

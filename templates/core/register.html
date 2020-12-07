@@ -1,0 +1,88 @@
+{%extends 'core/base.html'%}
+{%block body_block%}
+
+<div class="register-photo">
+    <div class="form-container">
+        <!-- <div class="image-holder"></div> -->
+        <form action="{% url 'core:register' %}" method="post">
+            <h2 class="text-center"><strong>Create</strong> an account.</h2>
+            <h2 class="text-center">Location</h2>
+            <button onclick="getLocation()">Give access to your location</button>
+                
+                <p id="demo"></p>
+                <div class="form-group">
+                  <input class="form-control" type="text" name="latitude" id="latitude" placeholder="Latitude" />
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="text" name="longitude" id="longitude" placeholder="Longitude" />
+                </div>
+                
+                <!-- <img id="mapholder" src="" alt="Location" display="None">
+                <div id="output"></div> -->
+                
+                <h2 class="text-center">Personal Details</h2>
+                {% csrf_token %}
+                {{userform.as_p}}
+            <h2 class="text-center">Select the genres that interests you.</h2>
+            <div class="container">
+            {% for g in genreNodes %}
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="genres" id="{{g.name}}" value="{{g.name}}">
+                <label class="form-check-label" for="{{g.name}}">{{g.name}}</label>
+            </div>
+            {% endfor %}
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+            </div>
+        </div>
+        <a class="already" href="{% url 'core:user_login' %}">You already have an account? Login here.</a></form>
+    </div>
+</div>
+
+    {% block script %}
+    <script>
+    var x = document.getElementById("demo");
+    var lat = document.getElementById("latitude");
+    var long = document.getElementById("longitude");
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+    
+    function showPosition(position) {
+        
+        // x.innerHTML = "Latitude: " + position.coords.latitude + 
+        // "<br>Longitude: " + position.coords.longitude;
+        lat.value = position.coords.latitude;
+        long.value = position.coords.longitude;
+        var latlon = position.coords.latitude + "," + position.coords.longitude;
+        // var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=AIzaSyCbaKgkpfJ3y2tfe4JCsBRe6ADroVBG-Ss";
+        // var img = new Image();
+        // img.src = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=AIzaSyCbaKgkpfJ3y2tfe4JCsBRe6ADroVBG-Ss";
+        // $('#output').html(img);
+        // document.getElementById("mapholder").src = img_url;
+        
+    }
+    
+    function showError(error) {
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          x.innerHTML = "User denied the request for Geolocation."
+          break;
+        case error.POSITION_UNAVAILABLE:
+          x.innerHTML = "Location information is unavailable."
+          break;
+        case error.TIMEOUT:
+          x.innerHTML = "The request to get user location timed out."
+          break;
+        case error.UNKNOWN_ERROR:
+          x.innerHTML = "An unknown error occurred."
+          break;
+      }
+    }
+</script>
+    {% endblock %}
+{%endblock%}

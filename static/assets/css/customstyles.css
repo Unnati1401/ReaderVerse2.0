@@ -1,0 +1,14 @@
+.heading-custom {
+    background-color: #1d809f;
+    text-align: center;
+    padding: 1%;
+    border-radius: 20%;
+    color:white;
+}
+
+.floating-button {
+    position: fixed;
+    left:1rem;
+    top:16rem;
+    padding: 0.5%;
+}

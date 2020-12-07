@@ -1,0 +1,6 @@
+.star-rating {
+  line-height:32px;
+  cursor: pointer;
+}
+
+.star-rating .fa-star{color: yellow;}

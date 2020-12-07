@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% block body_block %}
+
+<div class="sidenav">
+  <a href="{% url 'core:genresPage' %}">Genres</a>
+  <a href="{% url 'core:authorsPage' %}">Authors</a>
+  <a href="{% url 'core:collab' %}">See what others are reading</a>
+</div>
+<div class="container main">
+<div class="row container">
+  {% for book in books %}
+  <div class="col-4">
+    <div class="card text-center" style="width: 18rem;">
+      <img class="card-img-top" src="{{book.2}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{book.0}}</h5>
+      </div>
+      <div class="card-body">
+        {% for a in book.1 %}
+        <a href="#" class="card-link">Author: {{a.name}}</a>
+        {% endfor %}
+      </div>
+      <div class="card-body">
+        {% for g in book.3 %}
+          <a href="#" class="card-link">Genre: {{g.name}}</a>
+        {% endfor %}
+      </div>
+
+      <div class="card-body">
+        <form action="/web_scrape/webscrape" method="post">
+          {% csrf_token %}
+          <button class="btn btn-primary" style="display:inline-block" type="submit" name="price" value="{{book.0}}">Online Price</button>
+          <button class="btn btn-primary" type="submit" name="exchange" value="{{book.0}}">Book Ex</button>
+        </form>
+      </div>
+      </div>
+  </div>
+  {% if forloop.counter|divisibleby:3 %}
+  </div>
+  <div class="row">
+  {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>ReaderVerse</title>
+
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+        <link rel='stylesheet' href='https://raw.githubusercontent.com/kartik-v/bootstrap-star-rating/master/css/star-rating.min.css'><link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
+
+        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/fonts/simple-line-icons.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/Article-List.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/Contact-Form-Clean.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Clean.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/Navigation-with-Button.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/Registration-Form-with-Photo.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/sidenav.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/searchbar.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/scrollbar.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/customstyles.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/ratingbar.css' %}">
+    </head>
+    <a class="menu-toggle rounded" href="#">
+        <i class="fa fa-bars"></i>
+    </a>
+    <nav class="navbar navbar-light navbar-expand" id="sidebar-wrapper">
+    <div class="container"><button data-toggle="collapse" data-target="#" class="navbar-toggler d-none"></button>
+        <div style="overflow:auto"class="collapse navbar-collapse">
+            <ul class="nav navbar-nav sidebar-nav" id="sidebar-nav">
+                <li class="nav-item sidebar-brand"><a class="nav-link active js-scroll-trigger" href="{% url 'index' %}">ReaderVerse</a></li>
+                <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'index' %}">Home</a></li>
+                <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:aboutus' %}">About</a></li>
+                <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:register' %}">Register</a></li>
+                <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:contactus' %}">Contact us</a></li>
+                <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:explore' %}">Explore</a></li>
+                <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'schools:nearby' %}">Donate</a></li>
+                <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'schools:ngo_form' %}">Register your NGO</a></li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:gettingStarted' %}">Getting started</a></li>
+                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:addFavorites' %}">Add Favorites</a></li>
+                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:profile' %}">Profile</a></li>
+                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:user_logout' %}">Logout</a></li>
+                {% else %}
+                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:user_login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+    <body id="page-top">
+        {% block body_block %}
+        {% endblock %}
+        <footer class="footer text-center">
+            <div class="container">
+                <ul class="list-inline mb-5">
+                    <li class="list-inline-item">&nbsp;<a class="text-white social-link rounded-circle" href="#"><i class="icon-social-facebook"></i></a></li>
+                    <li class="list-inline-item">&nbsp;<a class="text-white social-link rounded-circle" href="#"><i class="icon-social-twitter"></i></a></li>
+                    <li class="list-inline-item">&nbsp;<a class="text-white social-link rounded-circle" href="#"><i class="icon-social-github"></i></a></li>
+                </ul>
+                <p class="text-muted mb-0 small">Copyright &nbsp;© ReaderVerse 2020</p>
+            </div><a class="js-scroll-trigger scroll-to-top rounded" href="#page-top"><i class="fa fa-angle-up"></i></a>
+        </footer>
+
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>
+        <script src="{% static 'assets/js/searchbar.js' %}"></script>
+        <script src="{% static 'assets/js/ratingbar.js' %}"></script>
+        {% block script %}{% endblock %}
+    </body>
+</html>

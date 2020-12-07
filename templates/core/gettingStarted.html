@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% block body_block %}
+
+<section id="services" class="content-section bg-primary text-white text-center">
+    <div class="container">
+        <div class="content-section-heading">
+            <h3 class="text-secondary mb-0">Try our features to get the fullest of this website</h3>
+            <h2 class="mb-5">Getting Started</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-5 mb-lg-0"><span class="mx-auto service-icon rounded-circle mb-3"><i class="icon-pencil"></i></span>
+                <form action="{% url 'core:addFavorites' %}" method="get">
+                    <button type="submit" class="btn btn-dark">Favorites</button>
+                    <p class="mb-0 text-faded">To personalize your search, add books to favorites and recieve recommendations for further readings.</p>
+                </form>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5 mb-lg-0"><span class="mx-auto service-icon rounded-circle mb-3"><i class="icon-screen-smartphone"></i></span>
+                <form action="{% url 'core:genresPage' %}" method="get">
+                    <button type="submit" class="btn btn-dark">Genres</button>
+                    <p class="mb-0 text-faded">Explore the books from all genres to add more experience to your reading.</p>
+                </form>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5 mb-lg-0"><span class="mx-auto service-icon rounded-circle mb-3"><i class="icon-mustache"></i></span>
+                <form action="{% url 'core:authorsPage' %}" method="get">
+                    <button type="submit" class="btn btn-dark">Authors</button>
+                    <p class="mb-0 text-faded">Read books written by your favorite authors.</p>
+                </form>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5 mb-lg-0"><span class="mx-auto service-icon rounded-circle mb-3"><i class="icon-pencil"></i></span>
+                <form action="{% url 'core:addRatings' %}" method="get">
+                    <button type="submit" class="btn btn-dark">Ratings</button>
+                    <p class="mb-0 text-faded">To personalize your search, add ratings to books and recieve recommendations for further readings.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{%endblock%}

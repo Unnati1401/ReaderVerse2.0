@@ -1,0 +1,69 @@
+{% extends 'core/base.html' %}
+{% block body_block %}
+
+<div class="sidenav">
+    <a href="{% url 'core:genresPage' %}">Genres</a>
+    <a href="{% url 'core:authorsPage' %}">Authors</a>
+    <a href="{% url 'core:collab' %}">See what others are reading</a>
+</div>
+
+<div class="container main">
+    <form action="{% url 'core:addRatings' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary btn-xl js-scroll-trigger floating-button" type="submit">Save ratings</button>
+
+        {% for key,value in booksToBePassed.items %}
+
+        <div class="myBox">
+        <h2 class="heading-custom">{{key}}</h2>
+
+            <div class="row container">
+                {% for book in value %}
+                <div class="col-sm">
+                    <div class="card text-center" style="width: 8rem;">
+                        <div class="img_block">
+                            <img class="card-img-top" src="{{book.2}}" alt="Card image cap">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input chkbox" type="checkbox" name="selectedBooks" id="{{book.0}}" value="{{book.0}}">
+                                <label class="form-check-label" for="{{book.0}}"></label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="star-rating" onclick="setCurrentElement(this)">
+                              <span class="fa fa-star-o" data-rating="1"></span>
+                              <span class="fa fa-star-o" data-rating="2"></span>
+                              <span class="fa fa-star-o" data-rating="3"></span>
+                              <span class="fa fa-star-o" data-rating="4"></span>
+                              <span class="fa fa-star-o" data-rating="5"></span>
+                              <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                            </div>
+                        </div>
+                        <!-- <div class="card-body">
+                            <p class="card-title">{{book.0}}</p>
+                        </div> -->
+                        <div class="card-body">
+                            <p>Authors:</p>
+                            {% for a in book.1 %}
+                            <a href="#" class="card-link">{{a.name}}</a>
+                            {% endfor %}
+                        </div>
+                        <!-- <div class="card-body">
+                            <p>Genres:</p>
+                            {% for g in book.3 %}
+                            <a href="#" class="card-link">{{g.name}}</a>
+                            {% endfor %}
+                        </div> -->
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:5 %}
+            </div>
+            <div class="row container">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        {% endfor %}
+    </form>
+</div>
+{% endblock %}
