@@ -1,0 +1,69 @@
+{% extends 'core/base.html' %}
+{% block body_block %}
+
+<div class="container">
+  <br>
+<h1>Look for availability of books for book exchange as per genre</h1>
+
+<div class="container">
+  <form method="POST">
+    {% csrf_token %}
+  <select name="genre" class="form">
+    <option disabled selected>Select Genre</option>
+  {% for entry in items %}
+      <option value="{{ entry.genre }}">{{ entry.genre }}</option>
+  {% endfor %}
+  <option value="All">All</option>
+
+  </select>
+
+  <input type="submit" name="" value="Search" class="btn btn-primary">
+  </form>
+</div>
+
+{% if details %}
+
+<h4 style="display:inline-block; margin-right:20px">Your Results! </h4>
+{% if item %}
+<table class="table table-bordered">
+  <thead>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Book</th>
+    <th>Author</th>
+    <th>Genre</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Distance</th>
+
+
+  </thead>
+
+  {% for disp,it in zi %}
+  <tr>
+    <td>{{ disp.name }}</td>
+    <td>{{ disp.address }}</td>
+      <td>{{ disp.book }}</td>
+        <td>{{ disp.author }}</td>
+        <td>{{ disp.genre }}</td>
+        <td>{{ disp.email }}</td>
+        <td>{{ disp.contact }}</td>
+    <td>{{ disp.distance|stringformat:".6s" }} km</td>
+    <td>
+<a href="{{ it }}">Get Directions</a>
+    </td>
+  </tr>
+
+  {% endfor %}
+</table>
+
+{% else %}
+<p>No results found! Try a different genre!</p>
+
+{% endif %}
+
+{% endif %}
+
+
+
+{%endblock%}

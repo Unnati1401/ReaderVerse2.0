@@ -38,8 +38,6 @@ def nearby(request):
 
 
 
-
-
     return render(request,'schools/nearby_schools.html',{'near':near, 'details':details,'dist':dist,'dirn':dirn,'zi':zip(near,dirn)})
 
 def ngo_form(request):

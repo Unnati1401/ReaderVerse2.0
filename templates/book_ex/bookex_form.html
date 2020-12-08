@@ -1,0 +1,107 @@
+{%extends 'core/base.html'%}
+{%block body_block%}
+
+<div class="container">
+
+<br>
+
+    <h1>Give your details to be eligible for book exchange!</h1>
+  <br>
+<div class="container pt-4">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="book">Name</label>
+          <input type="text" class="form-control col-6" id="name" name="name" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">City</label>
+          <input type="text" class="form-control col-6" name="city" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">Address</label>
+          <input type="text" class="form-control col-6" name="address" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">Book Title</label>
+          <input type="text" class="form-control col-6" name="book" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">Author</label>
+          <input type="text" class="form-control col-6" name="author" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">Genre</label>
+          <input type="text" class="form-control col-6" name="genre" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">Email</label>
+          <input type="text" class="form-control col-6" name="email" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">Contact</label>
+          <input type="text" class="form-control col-6" name="contact" aria-describedby="emailHelp">
+
+        </div>
+<br>
+
+        <button style="margin-left:10px" onclick="getlocation()">Click me to get your location</button>
+        <br>
+
+      <div class="form-group">
+        <label for="book">Latitude</label>
+        <input type="text" class="form-control col-6" id="lat" name="lat" aria-describedby="emailHelp">
+
+      </div>
+
+      <div class="form-group">
+        <label for="book">Longitude</label>
+        <input type="text" class="form-control col-6" id="long" name="long" aria-describedby="emailHelp">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</div>
+
+<script>
+  var x = document.getElementById("lat");
+  var y = document.getElementById("long");
+
+  function getlocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition)
+    } else {
+      alert("Sorry! your browser is not supporting")
+    }
+  }
+
+  function showPosition(position) {
+    var x = position.coords.latitude;
+    var y = position.coords.longitude;
+
+    x=x+0.13
+
+
+
+    document.getElementById("lat").value = x;
+    document.getElementById("long").value = y;
+  }
+</script>
+
+{%endblock%}

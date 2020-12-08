@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'schools',
     'web_scrape',
+    'book_ex',
     'core',
 ]
 REST_FRAMEWORK = {
@@ -125,7 +126,7 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'sgd_project',
         'USER': 'postgres',
-        'PASSWORD': 'password',
+        'PASSWORD': 'petals1@',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

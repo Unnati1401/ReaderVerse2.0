@@ -35,10 +35,15 @@
         <form action="/web_scrape/webscrape" method="post">
           {% csrf_token %}
           <button class="btn btn-primary" style="display:inline-block" type="submit" name="price" value="{{book.0}}">Online Price</button>
+
+        </form>
+
+        <form action="/book_ex/near_book/" method="post">
+          {% csrf_token %}
           <button class="btn btn-primary" type="submit" name="exchange" value="{{book.0}}">Book Ex</button>
         </form>
       </div>
-      
+
       </div>
   </div>
   {% if forloop.counter|divisibleby:3 %}

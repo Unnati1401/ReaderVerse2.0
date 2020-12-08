@@ -22,5 +22,6 @@ urlpatterns = [
     path('core/', include('core.urls')),
     path('web_scrape/', include('web_scrape.urls')),
     path('schools/', include('schools.urls')),
+    path('book_ex/', include('book_ex.urls')),
     path('',views.index,name='index'),
 ]
