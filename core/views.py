@@ -1,8 +1,8 @@
 # pylint: disable=no-member
 # pylint: disable=not-an-iterable
 from django.shortcuts import render
-from core.forms import UserForm
-from .models import UserProfileInfo, Genre, Book, Author
+from core.forms import UserForm, InstituteSeekDonation
+from .models import UserProfileInfo, Genre, Book, Author, SeekDonation, Institute
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete
@@ -16,6 +16,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from neomodel import db as neodb
 import random
 
+from django.core.mail import send_mail
 # Create your views here.
 
 #Creates user for a user node
@@ -361,3 +362,92 @@ def aboutus(request):
 
 def contactus(request):
     return render(request,'core/contactus.html')
+
+def contactus(request):
+    if request.method== "POST":
+        print("post")
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
+        print(name)
+        print(email)
+        print(message)
+
+        subject = "A Visitor's Comment"
+
+        comment = name + " with the email, " + email + ", sent the following message:\n\n" + message
+        send_mail(subject, comment, 'wingsoflifeofficial@gmail.com', ['wingsoflifeofficial@gmail.com', ])
+
+        return HttpResponse("Thank you for contacting us! We will get back to you soon")
+
+    else:
+        return render(request,'core/contactus.html')
+
+def checkReqView(request):
+    seekDonNode=SeekDonation.nodes.get()
+    # print(seekDonNode)
+    institueNodes = seekDonNode.relSeek.all()
+    print("getting sorted nodes")
+    bk2 = Institute.nodes.order_by('Date')
+
+
+
+    # print(institueNodes)
+    institueSeekToBePassed=[]
+
+    # adding nodes
+    for i in bk2:
+        institueSeekToBePassed.append([i.name, i.email, i.contact, i.address,i.select,i.Date])
+
+    # print(institueSeekToBePassed)
+
+
+    return render(request, 'core/checkrequests.html', {'institute': institueSeekToBePassed})
+
+
+
+def seekView(request):
+    if request.method == "POST":
+        print("post")
+
+        name=request.POST['name']
+        email=request.POST['email']
+        contact=request.POST['contact']
+        address=request.POST['address']
+        select=request.POST['select']
+        Date=request.POST['Date']
+
+        print(name)
+        print(email)
+        print(contact)
+        print(address)
+        print(select)
+        print(Date)
+        # print(type2)
+        # print(date)
+
+
+        seekform = InstituteSeekDonation(data=request.POST)
+        # print(seekform)
+        # print(seekform.errors.as_data())
+
+
+        if seekform.is_valid():
+            print("valid")
+            newSeeker = seekform.save(commit=False)
+
+            newSeeker.save()
+
+
+            newSeeker.seek.connect(SeekDonation.nodes.get())
+            return message(request,"Request has been sent!")
+
+        else:
+            return message(request,"Sent to Fail Request. Please Try Again.")
+
+    else:
+        print("fail")
+        seekform = InstituteSeekDonation()
+
+
+        return render(request,'core/seekDon.html',{'seekform': seekform,})

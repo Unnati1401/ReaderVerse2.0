@@ -20,5 +20,7 @@ urlpatterns = [
     url(r'^addFavorites/$', views.addFavorites, name='addFavorites'),
     url(r'^addGenres/$', views.addGenres, name='addGenres'),
     url(r'^removeFavorites/$', views.removeFavorites, name='removeFavorites'),
-    url(r'^removeGenres/$', views.removeGenres, name='removeGenres')
+    url(r'^removeGenres/$', views.removeGenres, name='removeGenres'),
+    url(r'^checkReq/$', views.checkReqView, name='checkReq'),
+    url(r'^seekDon/$', views.seekView, name='seek'),
 ]

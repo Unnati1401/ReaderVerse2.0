@@ -17,12 +17,12 @@ class UserProfileInfo(DjangoNode):
     longitude = FloatProperty()
     favGenres = RelationshipTo('Genre', 'FAVORITEGENRE', cardinality=ZeroOrMore)
     favBooks = RelationshipTo('Book', 'FAVORITEBOOK', cardinality=ZeroOrMore)
-    
+
     class Meta:
         app_label = 'core'
-        
+
 class Book(DjangoNode):
-    Title = StringProperty() 
+    Title = StringProperty()
     img_url = StringProperty()
     user = RelationshipFrom('UserProfileInfo','FAVORITEBOOK',cardinality=ZeroOrMore)
     wrote = RelationshipFrom('Author','WROTE',cardinality=OneOrMore)
@@ -37,4 +37,21 @@ class Genre(DjangoNode):
     genre_id = IntegerProperty()
     bookGenre = RelationshipTo('Book','GENRE',cardinality=ZeroOrMore)
     favGenre = RelationshipFrom('UserProfileInfo','FAVORITEGENRE',cardinality=ZeroOrMore)
-    
+
+class SeekDonation(DjangoNode):
+    relSeek= RelationshipTo('Institute','SEEKFROM',cardinality=ZeroOrMore)
+
+
+class Institute(DjangoNode):
+    #print("in institute")
+    name=StringProperty(max_length=100,required = True)
+    email=EmailProperty(unique=True,required = True)
+    contact=StringProperty(max_length=10, required = True)
+    address = StringProperty(max_length=200)
+    select = StringProperty(max_length=12, required = True)
+    Date = StringProperty(required = True)
+
+    seek = RelationshipFrom('SeekDonation', 'SEEKFROM', cardinality=ZeroOrMore)
+
+    class Meta:
+        app_label = 'core'

@@ -56,6 +56,7 @@ ALLOWED_HOSTS = []
 
 #Settings for django_neomodel
 
+
 NEOMODEL_NEO4J_BOLT_URL = os.environ.get(
     'NEO4J_BOLT_URL', 'bolt://neo4j:1234@localhost:7687')
 NEOMODEL_SIGNALS = True
@@ -96,6 +97,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'book_recm.urls'
+
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_HOST_USER= 'wingsoflifeofficial@gmail.com'
+EMAIL_HOST_PASSWORD= 'Team@2020'
+EMAIL_USE_TLS= True
+EMAIL_PORT= 587
+
 
 TEMPLATES = [
     {
