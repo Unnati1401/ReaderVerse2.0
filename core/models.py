@@ -1,9 +1,12 @@
 from django.db import models
 from django_neomodel import DjangoNode
-from neomodel import StructuredNode, RelationshipTo, RelationshipFrom, Relationship
+from neomodel import StructuredNode, RelationshipTo, RelationshipFrom, Relationship, StructuredRel
 from neomodel.properties import EmailProperty, DateProperty, StringProperty, FloatProperty, IntegerProperty
 from neomodel.cardinality import OneOrMore, One, ZeroOrMore
 
+class RatingRel(StructuredRel):
+    rating = FloatProperty()
+    
 class UserProfileInfo(DjangoNode):
     first_name = StringProperty(max_length=30,required = True)
     last_name = StringProperty(max_length=150, required = True)
@@ -17,7 +20,7 @@ class UserProfileInfo(DjangoNode):
     longitude = FloatProperty()
     favGenres = RelationshipTo('Genre', 'FAVORITEGENRE', cardinality=ZeroOrMore)
     favBooks = RelationshipTo('Book', 'FAVORITEBOOK', cardinality=ZeroOrMore)
-
+    bookRating = RelationshipTo('Book', 'RATING', model = RatingRel, cardinality=ZeroOrMore)
     class Meta:
         app_label = 'core'
 
@@ -27,6 +30,7 @@ class Book(DjangoNode):
     user = RelationshipFrom('UserProfileInfo','FAVORITEBOOK',cardinality=ZeroOrMore)
     wrote = RelationshipFrom('Author','WROTE',cardinality=OneOrMore)
     genre = RelationshipFrom('Genre', 'GENRE', cardinality=OneOrMore)
+    bookRating = RelationshipFrom('Book', 'RATING', model = RatingRel, cardinality=ZeroOrMore)
 
 class Author(DjangoNode):
     name = StringProperty()
