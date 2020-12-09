@@ -5,6 +5,7 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
 from django.contrib.gis.geos import fromstr
 from django.contrib.gis.db.models.functions import Distance
+import folium
 # Create your views here.
 def nearby(request):
     details=False
@@ -22,6 +23,13 @@ def nearby(request):
         location = fromstr(f'POINT({long} {lat})', srid=4326)
         dist=request.POST.get('dist')
 
+        m=folium.Map(location=[lat,long],zoom_start=12)
+
+        folium.Marker([lat,long],
+        popup='',
+        tooltip='Your Location!',
+        icon=folium.Icon(color='red')).add_to(m),
+
         if dist=="lt5":
             near = School.objects.annotate(distance=Distance("location", location)/1000).filter(distance__lte=5).order_by("distance")
         elif dist=="lt10":
@@ -35,6 +43,14 @@ def nearby(request):
                 org_address=it.address.replace(' ','+')
                 link="https://www.google.com/maps/dir/?api=1&destination=" + org + "+"+org_address
                 dirn.append(link)
+                tooltip="Name:"+it.name
+                folium.Marker([it.location.y,it.location.x],
+                               popup='<a href="' + link + '">GetDirection</a>',
+                               tooltip=tooltip).add_to(m)
+
+
+        m.save('templates/schools/map_near_school.html')
+
 
 
 
@@ -62,3 +78,6 @@ def ngo_form(request):
         return HttpResponse("Thank you for submitting your details")
 
     return render(request,'schools/ngo_form.html',{'details':details})
+
+def map_near_school(request):
+    return render(request,'schools/map_near_school.html')

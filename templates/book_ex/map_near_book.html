@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f9da47b077d843218273598a94963b08 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_f9da47b077d843218273598a94963b08" ></div>
+        
+</body>
+<script>    
+    
+            var map_f9da47b077d843218273598a94963b08 = L.map(
+                "map_f9da47b077d843218273598a94963b08",
+                {
+                    center: [19.250127999999997, 72.8891392],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_32919fa253034cc0be6fa05d0fa1a5bd = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_f9da47b077d843218273598a94963b08);
+        
+    
+            var marker_76156cc5ad8e401fa693804ae4803afd = L.marker(
+                [19.250127999999997, 72.8891392],
+                {}
+            ).addTo(map_f9da47b077d843218273598a94963b08);
+        
+    
+            var icon_b284af437b544825bd7691aec63c4bb7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_76156cc5ad8e401fa693804ae4803afd.setIcon(icon_b284af437b544825bd7691aec63c4bb7);
+        
+    
+        var popup_d4ae65dc2feb42349f82e99729bc9d1f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b7fa6c7f4491418986cbbbfd75a55a95 = $(`<div id="html_b7fa6c7f4491418986cbbbfd75a55a95" style="width: 100.0%; height: 100.0%;"></div>`)[0];
+            popup_d4ae65dc2feb42349f82e99729bc9d1f.setContent(html_b7fa6c7f4491418986cbbbfd75a55a95);
+        
+
+        marker_76156cc5ad8e401fa693804ae4803afd.bindPopup(popup_d4ae65dc2feb42349f82e99729bc9d1f)
+        ;
+
+        
+    
+    
+            marker_76156cc5ad8e401fa693804ae4803afd.bindTooltip(
+                `<div>
+                     Your Location!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_30b9e50187d74b9482ab1ad73b0505a1 = L.marker(
+                [19.2359987, 72.8432721],
+                {}
+            ).addTo(map_f9da47b077d843218273598a94963b08);
+        
+    
+        var popup_3a51c73f36114e708d21deb20e0c72c2 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_48f12201f7834f6e97643e0aa280fe23 = $(`<div id="html_48f12201f7834f6e97643e0aa280fe23" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps/dir/?api=1&destination=Ajmera+Pristine+Towers+Yogi+Nagar+Marg,+Yogi+Nagar,+Borivali+West,+C-Wing,+Yogi+Nagar,+Borivali,+Mumbai,+Maharashtra+400092">GetDirection</a></div>`)[0];
+            popup_3a51c73f36114e708d21deb20e0c72c2.setContent(html_48f12201f7834f6e97643e0aa280fe23);
+        
+
+        marker_30b9e50187d74b9482ab1ad73b0505a1.bindPopup(popup_3a51c73f36114e708d21deb20e0c72c2)
+        ;
+
+        
+    
+    
+            marker_30b9e50187d74b9482ab1ad73b0505a1.bindTooltip(
+                `<div>
+                     Name:Rohit Jaysinghania , Email:rohit_jay@yahoo.com , Contact:9005566788
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_02fb85b10337492698167e377365663d = L.marker(
+                [19.2121381, 72.8360756],
+                {}
+            ).addTo(map_f9da47b077d843218273598a94963b08);
+        
+    
+        var popup_add5859c143c4dce964b7fca47bbc3e0 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7ca2c8fc4b744cf0b92bd16cf18944ae = $(`<div id="html_7ca2c8fc4b744cf0b92bd16cf18944ae" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps/dir/?api=1&destination=Starlight+Apartment+Kandivali,+Mohan+Nagar,+Kandivali+West,+Mumbai,+Maharashtra+400067">GetDirection</a></div>`)[0];
+            popup_add5859c143c4dce964b7fca47bbc3e0.setContent(html_7ca2c8fc4b744cf0b92bd16cf18944ae);
+        
+
+        marker_02fb85b10337492698167e377365663d.bindPopup(popup_add5859c143c4dce964b7fca47bbc3e0)
+        ;
+
+        
+    
+    
+            marker_02fb85b10337492698167e377365663d.bindTooltip(
+                `<div>
+                     Name:Catherine Avery , Email:catherineavery45@gmail.com , Contact:9898777700
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_67ae4b0c731d4f448be2ce90053dc810 = L.marker(
+                [19.1339774, 72.8237474],
+                {}
+            ).addTo(map_f9da47b077d843218273598a94963b08);
+        
+    
+        var popup_20e35732209e4dc197b4997a7ebf39f2 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_407a64cc85d94fd2b2a968a2c6fb02e8 = $(`<div id="html_407a64cc85d94fd2b2a968a2c6fb02e8" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps/dir/?api=1&destination=Platinum+Heights+SV+Patel+Nagar,+Andheri+West,+Mumbai,+Maharashtra+400053">GetDirection</a></div>`)[0];
+            popup_20e35732209e4dc197b4997a7ebf39f2.setContent(html_407a64cc85d94fd2b2a968a2c6fb02e8);
+        
+
+        marker_67ae4b0c731d4f448be2ce90053dc810.bindPopup(popup_20e35732209e4dc197b4997a7ebf39f2)
+        ;
+
+        
+    
+    
+            marker_67ae4b0c731d4f448be2ce90053dc810.bindTooltip(
+                `<div>
+                     Name:Sanaya Sahi , Email:sanaya56@hotmail.com , Contact:9056893455
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>

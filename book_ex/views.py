@@ -7,6 +7,7 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
 from django.contrib.gis.geos import fromstr
 from django.contrib.gis.db.models.functions import Distance
+import folium
 # Create your views here.
 
 def message(request, message):
@@ -26,11 +27,29 @@ def near_book(request):
         if request.method == 'POST':
             book=request.POST.get('exchange')
             near = Book_ex.objects.annotate(distance=Distance("location", location)/1000).filter(distance__lte=25,book=book).order_by("distance")
+
+            m=folium.Map(location=[lat,long],zoom_start=12)
+
+            folium.Marker([lat,long],
+            popup='',
+            tooltip='Your Location!',
+            icon=folium.Icon(color='red')).add_to(m),
             if len(near)>0:
                 for it in near:
                     org_address=it.address.replace(' ','+')
                     link="https://www.google.com/maps/dir/?api=1&destination=" +org_address
                     dirn.append(link)
+                    tooltip="Name:"+it.name+" , Email:"+it.email+" , Contact:"+it.contact
+                    folium.Marker([it.location.y,it.location.x],
+                                   popup='<a href="' + link + '">GetDirection</a>',
+                                   tooltip=tooltip).add_to(m)
+
+
+            m.save('templates/book_ex/map_near_book.html')
+
+
+
+
         return render(request,'book_ex/near_book.html',{'near':near, 'dirn':dirn,'zi':zip(near,dirn),'book':book})
     else:
         return message(request, 'Register/Login to use this feature!')
@@ -100,3 +119,6 @@ def genre(request):
 
     else:
         return message(request, 'Register/Login to use this feature!')
+
+def map_near_book(request):
+    return render(request,'book_ex/map_near_book.html')

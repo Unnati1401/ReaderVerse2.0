@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5efd4de0b94f439dba889789efaf593b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_5efd4de0b94f439dba889789efaf593b" ></div>
+        
+</body>
+<script>    
+    
+            var map_5efd4de0b94f439dba889789efaf593b = L.map(
+                "map_5efd4de0b94f439dba889789efaf593b",
+                {
+                    center: [19.2468512, 72.8629248],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_345955fcd7474897bf3aad0cbc35e6a4 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_5efd4de0b94f439dba889789efaf593b);
+        
+    
+            var marker_59121227bfad45c9bc05f8542336e6fc = L.marker(
+                [19.2468512, 72.8629248],
+                {}
+            ).addTo(map_5efd4de0b94f439dba889789efaf593b);
+        
+    
+            var icon_14d2f52004fd4655a6915ec1a8fb7cd9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_59121227bfad45c9bc05f8542336e6fc.setIcon(icon_14d2f52004fd4655a6915ec1a8fb7cd9);
+        
+    
+        var popup_a40ed0157ceb4e5db2bca0c5822307e4 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2eafff22ceeb4f4fa3797caab8d197b7 = $(`<div id="html_2eafff22ceeb4f4fa3797caab8d197b7" style="width: 100.0%; height: 100.0%;"></div>`)[0];
+            popup_a40ed0157ceb4e5db2bca0c5822307e4.setContent(html_2eafff22ceeb4f4fa3797caab8d197b7);
+        
+
+        marker_59121227bfad45c9bc05f8542336e6fc.bindPopup(popup_a40ed0157ceb4e5db2bca0c5822307e4)
+        ;
+
+        
+    
+    
+            marker_59121227bfad45c9bc05f8542336e6fc.bindTooltip(
+                `<div>
+                     Your Location!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1ece5601de8c4a268cb1e5c80c0b3ac9 = L.marker(
+                [19.261878, 72.860348],
+                {}
+            ).addTo(map_5efd4de0b94f439dba889789efaf593b);
+        
+    
+        var popup_89d2848b0d2742a7a13fa4acb8499a67 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_cb8ec618dbbf463aafe57435c8f45dd5 = $(`<div id="html_cb8ec618dbbf463aafe57435c8f45dd5" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps/dir/?api=1&destination=Book+Door+Steps+Flat+No.+31,+A+Wing,+Garuda+Building,+Mira+Road,+Sristi+Sector+1,+Mumbai+401104">GetDirection</a></div>`)[0];
+            popup_89d2848b0d2742a7a13fa4acb8499a67.setContent(html_cb8ec618dbbf463aafe57435c8f45dd5);
+        
+
+        marker_1ece5601de8c4a268cb1e5c80c0b3ac9.bindPopup(popup_89d2848b0d2742a7a13fa4acb8499a67)
+        ;
+
+        
+    
+    
+            marker_1ece5601de8c4a268cb1e5c80c0b3ac9.bindTooltip(
+                `<div>
+                     Name:Book Door Steps
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_223b4c82e0fb47eeb630631fa6d044c4 = L.marker(
+                [19.229, 72.8419],
+                {}
+            ).addTo(map_5efd4de0b94f439dba889789efaf593b);
+        
+    
+        var popup_f6d31d9c0619496997e23fa0f650314a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bc0e4cb1199547b9b49208b24403fbc6 = $(`<div id="html_bc0e4cb1199547b9b49208b24403fbc6" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps/dir/?api=1&destination=Don+Bosco+High+School+Vazira+Naka,+LT+Road,+Borivali+West,+Mumbai,+Maharashtra+400091">GetDirection</a></div>`)[0];
+            popup_f6d31d9c0619496997e23fa0f650314a.setContent(html_bc0e4cb1199547b9b49208b24403fbc6);
+        
+
+        marker_223b4c82e0fb47eeb630631fa6d044c4.bindPopup(popup_f6d31d9c0619496997e23fa0f650314a)
+        ;
+
+        
+    
+    
+            marker_223b4c82e0fb47eeb630631fa6d044c4.bindTooltip(
+                `<div>
+                     Name:Don Bosco High School
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4d1ee60951064175af4c10a2637daecc = L.marker(
+                [19.2279, 72.8235],
+                {}
+            ).addTo(map_5efd4de0b94f439dba889789efaf593b);
+        
+    
+        var popup_3fc339bb2c8648f9844c6242d4b9662f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_31e1cf7aa63749e2b1adb79d00af99e5 = $(`<div id="html_31e1cf7aa63749e2b1adb79d00af99e5" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps/dir/?api=1&destination=Abhilasha+Foundation+NGO+Laxmi+Chhaya+Bungalow,+RSC+11,+Gorai+2,+Borivali+West,+400091">GetDirection</a></div>`)[0];
+            popup_3fc339bb2c8648f9844c6242d4b9662f.setContent(html_31e1cf7aa63749e2b1adb79d00af99e5);
+        
+
+        marker_4d1ee60951064175af4c10a2637daecc.bindPopup(popup_3fc339bb2c8648f9844c6242d4b9662f)
+        ;
+
+        
+    
+    
+            marker_4d1ee60951064175af4c10a2637daecc.bindTooltip(
+                `<div>
+                     Name:Abhilasha Foundation NGO
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>

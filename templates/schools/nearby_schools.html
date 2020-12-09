@@ -41,7 +41,7 @@
     {% if details %}
     <!-- AMAZON DETAILS DISPLAY-->
 
-    <h4 style="display:inline-block; margin-right:20px">Your Results! </h4> <a href="#">View Results on map</a>
+    <h4 style="display:inline-block; margin-right:20px">Your Results! </h4> <a href="{% url 'schools:map_near_school' %}">View Results on map</a>
     {% if near %}
     <table class="table table-bordered">
       <thead>
