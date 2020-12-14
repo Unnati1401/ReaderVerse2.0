@@ -1,0 +1,50 @@
+{%extends 'core/base.html'%}
+{%block body_block%}
+
+<div class="container">
+
+<br>
+
+    <h1>Share your stories of donation and inspire others towards the noble cause!</h1>
+  <br>
+<div class="container pt-4">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="book">Your Name</label>
+          <input type="text" class="form-control col-6" id="name" name="donor" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">Name of Organization</label>
+          <input type="text" class="form-control col-6" name="org" aria-describedby="emailHelp">
+
+        </div>
+
+        <div class="form-group">
+          <label for="book">Donation Made</label>
+          <input type="text" class="form-control col-6" name="donation" aria-describedby="emailHelp">
+
+        </div>
+
+
+
+      <div class="form-group">
+        <label for="book">Date of Donation</label>
+        <input type="text" class="form-control col-6" id="lat" name="date" aria-describedby="emailHelp">
+
+      </div>
+
+      <div class="form-group">
+        <label for="book">verification Number</label>
+        <input type="text" class="form-control col-6" id="long" name="verification" aria-describedby="emailHelp">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</div>
+
+{%endblock%}

@@ -1,0 +1,41 @@
+{%extends 'core/base.html'%}
+{%block body_block%}
+
+
+<div class="container">
+<br>
+  <h3 style="display:inline-block; margin-right:20px">List of Donors: </h3>
+
+{% if item %}
+  <table class="table table-bordered">
+    <thead>
+      <th>Name of Donor</th>
+      <th>Organization Name</th>
+      <th>Donation Made</th>
+      <th>Date</th>
+
+
+    </thead>
+
+
+    {% for disp in item %}
+    <tr>
+      <td>{{ disp.donor }}</td>
+      <td>{{ disp.org }}</td>
+      <td>{{ disp.donation }}</td>
+      <td>{{disp.date}}</td>
+    </tr>
+
+    {% endfor %}
+  </table>
+{% endif %}
+
+
+
+
+
+
+</div>
+
+
+{%endblock%}

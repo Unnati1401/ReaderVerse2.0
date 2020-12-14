@@ -71,6 +71,7 @@ class InstituteSeekDonation(forms.ModelForm):
     CHOICES = (
         ('Story Books', 'Story Books'),
         ('Novels', 'Novels'),
+        ('Textbooks'),('Textbooks'),
         ('Magazines', 'Magazines'),
         ('Other','Other')
     )

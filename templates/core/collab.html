@@ -9,7 +9,7 @@
 
 <div class="container main">
   <h1 class="heading-custom">Top Rated Books</h1>
-    
+
 <div class="row container">
   {% for book in topRatedBooks %}
     <div class="col-4">
@@ -30,6 +30,18 @@
                   <a href="#" class="card-link">{{g.name}}</a>
                 {% endfor %}
               </div>
+              <div class="card-body">
+                <form action="/web_scrape/webscrape" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" style="display:inline-block" type="submit" name="price" value="{{book.0}}">Online Price</button>
+
+                </form>
+
+                <form action="/book_ex/near_book/" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" type="submit" name="exchange" value="{{book.0}}">Book Ex</button>
+                </form>
+              </div>
         </div>
     </div>
     {% if forloop.counter|divisibleby:3 %}
@@ -39,7 +51,7 @@
     {% endfor %}
 </div>
 <h1 class="heading-custom">Top Favorite Books</h1>
-    
+
 <div class="row container">
   {% for book in topFavBooks %}
     <div class="col-4">
@@ -59,6 +71,18 @@
                 {% for g in book.3 %}
                   <a href="#" class="card-link">{{g.name}}</a>
                 {% endfor %}
+              </div>
+              <div class="card-body">
+                <form action="/web_scrape/webscrape" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" style="display:inline-block" type="submit" name="price" value="{{book.0}}">Online Price</button>
+
+                </form>
+
+                <form action="/book_ex/near_book/" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" type="submit" name="exchange" value="{{book.0}}">Book Ex</button>
+                </form>
               </div>
         </div>
     </div>

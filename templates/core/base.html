@@ -28,7 +28,7 @@
     <a class="menu-toggle rounded" href="#">
         <i class="fa fa-bars"></i>
     </a>
-    <nav class="navbar navbar-light navbar-expand" id="sidebar-wrapper">
+    <nav class="navbar navbar-light navbar-expand" id="sidebar-wrapper" style="height:100%; overflow-y:scroll;overflow-x:hidden;">
     <div class="container"><button data-toggle="collapse" data-target="#" class="navbar-toggler d-none"></button>
         <div style="overflow:auto"class="collapse navbar-collapse">
             <ul class="nav navbar-nav sidebar-nav" id="sidebar-nav">
@@ -50,6 +50,9 @@
                     <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:addFavorites' %}">Add Favorites</a></li>
                     <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:addRatings' %}">Add Ratings</a></li>
                     <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:profile' %}">Profile</a></li>
+                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'schools:show_donation' %}">Show Donors List</a></li>
+                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'schools:donor_form' %}">Donation Form</a></li>
+
                     <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:user_logout' %}">Logout</a></li>
                 {% else %}
                     <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:user_login' %}">Login</a></li>

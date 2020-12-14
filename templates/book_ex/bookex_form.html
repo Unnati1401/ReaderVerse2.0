@@ -7,9 +7,22 @@
 
     <h1>Give your details to be eligible for book exchange!</h1>
   <br>
-<div class="container pt-4">
+  <button style="margin-left:10px" onclick="getlocation()">Click me to get your location</button>
+  <br>
+  <div class="container pt-4">
     <form method="post">
-        {% csrf_token %}
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="book">Latitude</label>
+        <input type="text" class="form-control col-6" id="lat" name="lat" aria-describedby="emailHelp">
+
+      </div>
+
+      <div class="form-group">
+        <label for="book">Longitude</label>
+        <input type="text" class="form-control col-6" id="long" name="long" aria-describedby="emailHelp">
+      </div>
+
         <div class="form-group">
           <label for="book">Name</label>
           <input type="text" class="form-control col-6" id="name" name="name" aria-describedby="emailHelp">
@@ -59,7 +72,7 @@
         </div>
 <br>
 
-        <button style="margin-left:10px" onclick="getlocation()">Click me to get your location</button>
+      <!--  <button style="margin-left:10px" onclick="getlocation()">Click me to get your location</button>
         <br>
 
       <div class="form-group">
@@ -71,7 +84,7 @@
       <div class="form-group">
         <label for="book">Longitude</label>
         <input type="text" class="form-control col-6" id="long" name="long" aria-describedby="emailHelp">
-      </div>
+      </div>-->
 
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

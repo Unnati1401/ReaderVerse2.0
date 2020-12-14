@@ -95,7 +95,7 @@ def explore(request):
     top50RatedBooks = []
     for b in topBooks:
         top50RatedBooks.append([b.Title, b.wrote.all(), b.img_url, b.genre.all()])
-    
+
     if user.is_authenticated:
         userNode = UserProfileInfo.nodes.get(username=user.username)
         #userGenres = userNode.favGenres.all()
@@ -104,12 +104,12 @@ def explore(request):
         for b in userRatedBooks:
             for u in b.bookRating.all():
                 otherUsersRated.append(u)
-        
+
         for u in otherUsersRated:
             for b in u.bookRating.all():
                 if u.bookRating.match(rating__gt=3.5) and b.bookRating.relationship(userNode) == None:
                     booksToBePassed.append([b.Title, b.wrote.all(), b.img_url, b.genre.all()])
-                
+
     return render(request, 'core/explore.html', {'books': booksToBePassed,'top50RatedBooks':top50RatedBooks})
 
 def profile(request):
@@ -156,14 +156,14 @@ def collab(request):
     topRatedBooks = []
     for b in topBooks:
         topRatedBooks.append([b.Title, b.wrote.all(), b.img_url, b.genre.all()])
-    
+
     result, meta = neodb.cypher_query("MATCH (user)-[r:FAVORITEBOOK]->(book) WITH count(r) AS num,book RETURN book ORDER BY num DESC LIMIT 50")
     topBooks = [Book.inflate(row[0]) for row in result]
     topFavBooks = []
     for b in topBooks:
         topFavBooks.append([b.Title, b.wrote.all(), b.img_url, b.genre.all()])
-    
-    return render(request,'core/trending.html',{'topRatedBooks':topRatedBooks,'topFavBooks':topFavBooks})
+
+    return render(request,'core/collab.html',{'topRatedBooks':topRatedBooks,'topFavBooks':topFavBooks})
 
 def genresPage(request):
 
@@ -206,7 +206,7 @@ def authorsPage(request):
         for b in booksList:
             booksToBePassed.append([b.Title, b.wrote.all(), b.img_url, b.genre.all()])
         return render(request, 'core/authorsPage.html', {'books': booksToBePassed, 'authorNodes': authorNodes})
-    
+
     else:
         return render(request, 'core/authorsPage.html', {'authorNodes': authorNodes})
 
@@ -219,10 +219,10 @@ def gettingStarted(request):
 def addRatings(request):
     if request.user.is_authenticated == False:
         return register(request)
-    
+
     else:
         userNode = UserProfileInfo.nodes.get(username=request.user.username)
-        
+
         if request.method=="GET":
             booksToBePassed = {}
             userGenres = userNode.favGenres
@@ -234,14 +234,14 @@ def addRatings(request):
                     if userNode not in b.user.all():
                         books.append([b.Title, b.wrote.all(), b.img_url, b.genre.all()])
                 booksToBePassed[str(g.name)] = books
-                
+
             return render(request, 'core/addRatings.html', {'booksToBePassed': booksToBePassed})
-        
+
         else:
             selectedBooks = request.POST.getlist('selectedBooks')
             selectedRatings = request.POST.getlist('selectedRatings')
             ratings_list = []
-            
+
             for r in selectedRatings:
                 if r != '':
                     ratings_list.append(float(r))
@@ -249,7 +249,7 @@ def addRatings(request):
                 return message(request,'You have not selected all the checkboxes, Please select checkbox to rate.')
             if len(ratings_list) < len(selectedBooks):
                 return message(request,'You have not added rating for all selected books, Please try again.')
-            
+
             index = 0
             for b in selectedBooks:
                 list = Book.nodes.filter(Title=b)
@@ -257,15 +257,15 @@ def addRatings(request):
                     userNode.bookRating.connect(bookNode,{'rating':ratings_list[index]})
                 index = index+1
             return message(request, 'Ratings added')
-            
+
 # Displays random 50 books from each of user's genres and adding selected books as user's favorite ones
 def addFavorites(request):
     if request.user.is_authenticated == False:
         return register(request)
-    
+
     else:
         userNode = UserProfileInfo.nodes.get(username=request.user.username)
-        
+
         if request.method=="GET":
             booksToBePassed = {}
             userGenres = userNode.favGenres
@@ -277,13 +277,17 @@ def addFavorites(request):
                     if userNode not in b.user.all():
                         books.append([b.Title, b.wrote.all(), b.img_url, b.genre.all()])
                 booksToBePassed[str(g.name)] = books
-                
+
             return render(request, 'core/addFavorites.html', {'booksToBePassed': booksToBePassed})
-        
+
         else:
             favBooksList = request.POST.getlist('selectedBooks')
+            #index = 0
             for b in favBooksList:
-                userNode.favBooks.connect(Book.nodes.get(Title=b))
+                list = Book.nodes.filter(Title=b)
+                for bookNode in list:
+                    userNode.favBooks.connect(bookNode)
+                #index = index+1
             return message(request, 'Books added to favorites')
 
 #Creates genre nodes. Call each time before adding the first user.
@@ -408,7 +412,7 @@ def checkReqView(request):
 
 def seekView(request):
     if request.method == "POST":
-        print("post")
+        #print("post")
 
         name=request.POST['name']
         email=request.POST['email']

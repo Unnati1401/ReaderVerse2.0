@@ -34,6 +34,7 @@ def near_book(request):
             popup='',
             tooltip='Your Location!',
             icon=folium.Icon(color='red')).add_to(m),
+
             if len(near)>0:
                 for it in near:
                     org_address=it.address.replace(' ','+')
@@ -106,15 +107,27 @@ def genre(request):
         if request.method == 'POST' and details==False:
             details=True
             genre=request.POST.get('genre')
+            m=folium.Map(location=[lat,long],zoom_start=10)
+
             if genre=="All":
                 item=Book_ex.objects.annotate(distance=Distance("location", location)/1000).filter(distance__lte=25).order_by("distance")
+                map_genre=Book_ex.objects.all()
+
             else:
                 item=Book_ex.objects.annotate(distance=Distance("location", location)/1000).filter(distance__lte=25,genre=genre).order_by("distance")
+                map_genre=Book_ex.objects.all().filter(genre=genre)
             if len(item)>0:
                 for it in item:
                     org_address=it.address.replace(' ','+')
                     link="https://www.google.com/maps/dir/?api=1&destination=" +org_address
                     dirn.append(link)
+                    #tooltip="Name:"+it.name+" , Email:"+it.email+" , Contact:"+it.contact
+            if len(map_genre)>0:
+                for l in map_genre:
+                    folium.Marker([l.location.y,l.location.x],
+                                   popup='',
+                                   icon=folium.Icon(color='purple')).add_to(m)
+            m.save('templates/book_ex/genre_density.html')
         return render(request,'book_ex/genre.html',{'details':details,'item':item, 'items':items,'dirn':dirn,'zi':zip(item,dirn)})
 
     else:
@@ -122,3 +135,6 @@ def genre(request):
 
 def map_near_book(request):
     return render(request,'book_ex/map_near_book.html')
+
+def genre_density(request):
+    return render(request,'book_ex/genre_density.html')

@@ -10,5 +10,6 @@ urlpatterns = [
      path('near_book/', views.near_book, name='near_book'),
      path('map_near_book/', views.map_near_book, name='map_near_book'),
      path('bookex_form/', views.bookex_form, name='bookex_form'),
+     path('genre_density/', views.genre_density, name='genre_density'),
      path('genre/', views.genre, name='genre'),
 ]

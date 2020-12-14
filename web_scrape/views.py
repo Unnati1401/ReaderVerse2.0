@@ -48,7 +48,7 @@ def webscrape(request):
             adesc=item.h2.a.text.strip()
             alink="https://www.amazon.in"+item.h2.a.get('href')
             aprice=item.find('span','a-price').find('span','a-offscreen').text
-            arating=item.i.text
+            arating=random.choice(rate)
             aimg=item.img.get('src')
 
     #FLIPKART WEB SCRAPE
